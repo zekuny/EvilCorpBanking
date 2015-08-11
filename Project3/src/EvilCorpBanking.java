@@ -109,7 +109,7 @@ public class EvilCorpBanking {
 			System.out.println("Do you want to close an account? (Y/N)");
 			sc = new Scanner(System.in);
 			String close = sc.next();
-			while(!close.equalsIgnoreCase("N")){
+			while(!close.equalsIgnoreCase("N")){ 
 				listCurrentAccount(accountMap);
 				String accountN = Validator.getString(sc, "Enter account number: ");
 				while(!accountN.matches(regex)){
