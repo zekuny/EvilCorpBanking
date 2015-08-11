@@ -60,8 +60,7 @@ public class EvilCorpBanking {
 
 			
 			// Read new account from user input
-			// didn't check existed account, will add code in later phase
-			listCurrentAccount(accountMap);
+
 			next = Validator.getString(sc, "Enter a transaction type (Check, Debit card, Deposit or Withdrawal) or -1 to finish : ");
 			while(!next.equalsIgnoreCase("check") && !next.equalsIgnoreCase("debit card") && !next.equalsIgnoreCase("deposit") && !next.equalsIgnoreCase("withdrawal") && !next.equalsIgnoreCase("-1")){
 				next = Validator.getString(sc, "Enter a valid transaction type: ");
@@ -87,8 +86,6 @@ public class EvilCorpBanking {
 				}
 				Transaction t = new Transaction(next, accountNumber, amount, date);
 				transactionList.add(t);
-				countBalance(transactionList, accountMap);
-				listCurrentAccount(accountMap);
 				next = Validator.getString(sc, "Enter a transaction type (Check, Debit card, Deposit or Withdrawal) or -1 to finish : ");
 				while(!next.equalsIgnoreCase("check") && !next.equalsIgnoreCase("debit card") && !next.equalsIgnoreCase("deposit") && !next.equalsIgnoreCase("withdrawal") && !next.equalsIgnoreCase("-1")){
 					next = Validator.getString(sc, "Enter a valid transaction type: ");
@@ -104,7 +101,8 @@ public class EvilCorpBanking {
 			Collections.sort(transactionList, dateComparator);
 
 			//Map<String, Double> balanceMap = new HashMap<String, Double>();
-			//countBalance(transactionList, accountMap);
+			countBalance(transactionList, accountMap);
+			listCurrentAccount(accountMap);
 			printBalance(accountMap);
 			
 			System.out.println();
@@ -112,12 +110,14 @@ public class EvilCorpBanking {
 			sc = new Scanner(System.in);
 			String close = sc.next();
 			while(!close.equalsIgnoreCase("N")){
+				listCurrentAccount(accountMap);
 				String accountN = Validator.getString(sc, "Enter account number: ");
 				while(!accountN.matches(regex)){
 					accountN = Validator.getString(sc, "Enter a valid account number: ");
 				}
 				String s = closeAccount(accountMap, accountN);
 				System.out.println(s);
+				listCurrentAccount(accountMap);
 				close = Validator.getString(sc, "Do you want to close an account? (Y/N)");
 			}
 			System.out.println();
