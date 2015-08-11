@@ -35,7 +35,7 @@ public class Validator {
 			} else {
 				System.out.println("Error! Invalid integer value.\nTry again.");
 			}
-			sc.nextLine();
+			sc.nextLine(); 
 		}
 		return d;
 	}

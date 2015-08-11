@@ -45,4 +45,8 @@ public class Account {
 		NumberFormat currency = NumberFormat.getCurrencyInstance();
 		return currency.format(this.getBalance());
 	}
+	
+	public void makeDeposit(double n){
+		balance += n;
+	}
 }
